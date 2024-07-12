@@ -1,0 +1,198 @@
+@use './mixins' as *;
+
+// モバイルPCでの表示
+@include mq {
+  .sp-only {
+    display: none;
+  }
+
+  .pc-only {
+    display: block;
+  }
+}
+
+.header {
+  left: 20;
+  top: 0px;
+  height: 100vh;
+  width: 100%;
+  background: #fff;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.header-logo img {
+  width: 100%;
+}
+
+header-logo {
+  width: 160px;
+  margin: 20px;
+  ;
+}
+
+@include mq {
+  .header {
+    height: 100vh;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/*ハンバーガーメニュー.ナビゲーション*/
+
+/*チェックボックス等は非表示に*/
+//.gnav-hidden {
+//  display: none;
+//}
+
+/*アイコンのスペース / １個のlabelタグ（ボタン）*/
+#gnav-open {
+
+  width: 40px;
+  height: 40px;
+  top: 10px;
+  right: 12px;
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+
+}
+
+#gnav-open {
+  cursor: pointer;
+
+  span,
+  span::before,
+  span::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    /*線の太さ*/
+    width: 25px;
+    /*長さ*/
+    left: 5px;
+    top: calc(50% - 1px);
+    transition: 5s cubic-bezier(0.645, 0.045, 0.355, 1);
+    background-color: ver(--text-color);
+
+  }
+
+  span::before {
+    bottom: -8px;
+  }
+
+  span::after {
+    bottom: -16px;
+  }
+}
+
+/*メニューの中身*/
+#gnav-content {
+  overflow: auto; //自動的にスクロールバー出してくれる
+  display: flex;
+  flex-grow: 2;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 82%;
+  max-width: 300px;
+  height: 100%;
+  background-color: #fff;
+  transition: 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+  // transform: translateX(100%);
+
+  #gnav-input:checkd~& {
+    display: none;
+    transform: translateX(0%);
+  }
+}
+
+.gnav-content ul li {
+  display: block;
+  margin-block-start: 2em;
+  margin-bottom: 40px;
+}
+
+.gnav-site {
+  display: flex;
+  flex-direction: column; //縦並びに
+  align-items: center;
+  padding-top: 50px;
+  text-transform: uppercase; //大文字化
+}
+
+.gnav-site a {
+  //display: inline-block;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 20px;
+  color: var(--text-color);
+}
+
+a {
+  color: #fff;
+  font-size: 12px;
+  display: inline-block;
+  text-decoration: none;
+  color: var(--text-color);
+  text-align: center;
+  position: relative;
+}
+
+//SNS
+//.header-sns {
+//  display: flex;
+//  justify-content: center;
+//  padding: 2rem 0;
+//   flex-grow: 1;
+// }
+
+// .header-sns a {
+//   margin: 0 8px;
+// }
+
+// @media screen and (min-width: 768px) {
+// .site-nav-container {
+//   transform: none !important;
+//   transition: none !important;
+//  position: static;
+// }
+
+//  .site-nav {
+//  position: static;
+//  width: 80%;
+//  margin: 0 auto;
+//  background-color: transparent;
+//   flex-grow: 1;
+//   align-items: start;
+//   justify-content: start;
+// }
+
+// .site-nav ul li {
+//    margin-bottom: 1.5em;
+// }
+
+//  .site-nav a {
+//    font-size: 1rem;
+//  }
+
+//  .site-nav-toggle {
+//   display: none;
+// }
+
+// .site-nav ul {
+//   text-align: start;
+//  }
+
+// .header-sns {
+//   flex-grow: 0;
+// }
+//}
