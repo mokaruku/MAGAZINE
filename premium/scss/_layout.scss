@@ -1,15 +1,15 @@
 @use './mixins' as *;
 
 // モバイルPCでの表示
-@include mq {
-  .sp-only {
-    display: none;
-  }
+//@include mq {
+// .sp-only {
+//    display: none;
+//  }
 
-  .pc-only {
-    display: block;
-  }
-}
+// .pc-only {
+//   display: block;
+// }
+//}
 
 //ヘッダー
 .header {
@@ -22,7 +22,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  z-index: 1;//重なりなくす
+  z-index: 1; //重なりなくす
 }
 
 .header-logo img {
@@ -30,8 +30,8 @@
 }
 
 .header-logo {
-  width: 150px;
-  margin: 40px  auto ;
+  width: 160px;
+  margin: 40px auto 80px;
 }
 
 @include mq {
@@ -41,12 +41,14 @@
     display: flex;
     flex-direction: column;
   }
+
   @include mq {
     .container {
       margin-left: 200px;
     }
   }
 }
+
 /*ハンバーガーメニュー.ナビゲーション*/
 /*メニュー中身*/
 #gnav-content {
@@ -61,19 +63,19 @@
   height: 100vh;
   background-color: #fff;
   transition: 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
-  //transform: translateX(100%);
+  // transform: translateX(100%);
 
   //#gnav-input:checkd~& {
- // display: none;
- // }
+  // display: none;
+  // }
 }
 
 //@include mq {
- //#gnav-container {
- // transform: none 
- // }
- //}
-  
+//#gnav-container {
+// transform: none 
+//}
+//}
+
 .gnav-site {
   display: flex;
   align-items: center;
@@ -88,26 +90,21 @@
   text-align: center;
 }
 
-//.gnav-site ul li:last-child {
-// margin-bottom: 0;
-//}
- 
-  
-.gnav-site ul li {
-  margin-bottom: 1em;//メニュー余白
+.gnav-site ul li:last-child {
+  margin-bottom: 0;
 }
 
- 
+.gnav-site ul li {
+  margin-bottom: 1.5em; //メニュー余白
+}
 
 .gnav-site a {
   display: inline-block;
   position: relative;
-  padding-bottom: 5px;
   color: var(--text-color);
   text-decoration: none;
-  padding-bottom: 3px;
-  //font-size: 1rem;  バランス見て決める
-
+  padding-bottom: 2px;
+  font-size: .9rem; //menu font size
 }
 
 .gnav-site a::after {
@@ -115,40 +112,30 @@
   position: absolute;
   //height: 2px;　バランス見て決める
   width: 100;
-  //left: 0;
+  left: 0;
   bottom: 0;
   background-color: var(--text-color);
   transition: transform .5s cubic-bezier(0.645, 0.045, 0.355, 1);
-  //transform: scaleX(0);
+  transform: scaleX(0);
   transform-origin: right center;
-  }
+}
 
-  .gnav-site a:hover::after {
-    transform-origin: left center;
-    //transform: scaleX(1);
-  }
+.gnav-site a:hover::after {
+  transform-origin: left center;
+  transform: scaleX(1);
+}
 
-  //a {
-   // color: #fff;
-   // font-size: 12px;
-   // display: inline-block;
-   // text-decoration: none;
-   // color: var(--text-color);
-   // text-align: center;
-   // position: relative;
-  //}
+.site-nav-check {
+  display: none;
+}
 
-  .site-nav-check {
-    display: none;
-  }
-  
 .gnav-hidden {
   display: none;
 }
 
 //ボタン
 #gnav-open {
- width: 50px;
+  width: 50px;
   height: 50px;
   top: 20px;
   right: 16px;
@@ -156,175 +143,291 @@
   position: fixed;
   justify-content: center;
   align-items: center;
-  //z-index: 10;一番最前面に配置
+  z-index: 10; //一番最前面に配置
   position: fixed;
   //vertical-align: middle;中央に配置
 }
 
 #gnav-open {
+
   span,
   span::before,
   span::after {
     height: 2px;
-    width: 40px;//３本線長さ
-    //transition: 5s cubic-bezier(0.645, 0.045, //0.355, 1);
+    width: 35px; //３本線長さ
+    transition: .5s;
     background-color: var(--text-color);
-    cursor: pointer;
-   border-radius: 3px;
+    cursor: pointer; //表示非表示
   }
 }
 
 #gnav-open span {
-    transform-origin: left center;
-    //display: block;
-    
-    //position: absolute;
+  transform-origin: left center;
+  //display: block;
+
+  //position: absolute;
   //left: 0;
   //transition: all 0.3s ease-in-out;
-  }
+}
 
 #gnav-open {
+
   span::before,
   span::after {
     content: '';
     position: absolute;
-     //left: 5px;
-    //top: calc(50% - 1px);
+    //left: 3px;
+    top: calc(50% - 1px);
   }
 }
-  
+
 #gnav-open {
   ::before {
     transform: translateY(-10px);
   }
-    ::after {
-      transform: translateY(10px);
+
+  ::after {
+    transform: translateY(10px);
   }
 }
 
-  .gnav-hidden:checked~.gnav-content {
-    transform: translateX(0);
-  }
+.gnav-hidden:checked~.gnav-content {
+  transform: translateX(0);
+}
 
-  .gnav-hidden:checked~#gnav-open span {
-    transform: scaleX(0);
-  }
+.gnav-hidden:checked~#gnav-open span {
+  transform: scaleX(0);
+}
 
-  .gnav-hidden:checked~#gnav-open::before {
-    transform: translateY(0) rotate(45deg);
-  }
+.gnav-hidden:checked~#gnav-open::before {
+  transform: translateY(0) rotate(45deg);
+}
 
-  .gnav-hidden:checked~#gnav-open::after {
-    transform: translateY(0) rotate(-45deg);
-  }
+.gnav-hidden:checked~#gnav-open::after {
+  transform: translateY(0) rotate(-45deg);
+}
 
 
-  //SNS
-  .sns {
+//SNS
+.sns {
   display: flex;
-   justify-content: center;
+  justify-content: center;
   padding: 2rem 0;
-     flex-grow: 0;
-   }
+  flex-grow: 0;
+}
 
-  .sns a {
-   margin: 0 8px;
-  }
+.sns a {
+  display: inline-block;
+  margin: 0 8px;
+}
 
-  .gnav-site {
-    position: static;
-    width: 80%;
-    margin: 0 auto;
-    background-color: transparent;
-     flex-grow: 1;
-     align-items: start;
-     justify-content: start;
-   }
+.gnav-site {
+  position: static;
+  width: 80%;
+  margin: 0 auto;
+  background-color: transparent; //要素背景透明
+  flex-grow: 1;
+  align-items: start;
+  justify-content: start;
+}
+
+.gnav-site ul {
+  text-align: start;
+}
+
 
 //メインエリア
-
 .mv-aria {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
+  //flex-direction: row;
   position: relative;
- // height: calc(100vh - 60px);
+  height: calc(100vh - 60px); //100vhは８００px
   background: url(../img/mv-bg@2x.jpg) no-repeat center center;
   background-size: cover;
+  //animation: mv 1s .5s both;
 }
 
 .mv-img {
-  transform: translateY(-40%);//本の位置
-  width: min(80vw, 350px);//本の大きさh
+  //transform: translateY(-10%); 
+  width: min(75vw, 250px);
+  height: 80vh;
+  max-height: 500px; //本の大きさh
+  width: auto;
+  transform: translateY(0); //文字重なる
 }
 
-  @include mq {
-    .mv-aria {
-      height: 140vh;
-    }
+@include mq {
+  .mv-aria {
+    height: 100vh; //本の高さ
   }
+}
 
-  .mv-img {
-    height: 80vh;
-    max-height: 700px;
-    width: auto;
-    transform: translateY(0);
-      transform: translateY(-20%);//文字重なる
-  }
+.mv-text {
+  position: absolute;
+  // top: 120%; //文字高さ
+  // left: 35%;
+  // font-size: 1rem;
+  margin: 20px;
+  //padding: 10px;
+  // overflow: hidden;
+  transform: translate(-40%, -150%); //文字位置
+  text-align: center;
+  line-height: 1;
+}
 
-   .mv-text {
-     position: absolute;
-     top: 120%;//文字高さ
-     left: 35%;
-     font-size: 1rem;
-     margin: 0 ;
-       overflow: hidden;
-     transform: translate(-50%, -50%);
-     text-align: center;
-     
-   }
- 
-   .mv-text {
-    line-height: 1;
-  }
- 
+
 h4 {
-  font-size: 1rem;
-  display:inline-block;
-  margin-bottom: 5px;
+  font-size: 1.2rem;
+  display: inline-block;
+  margin-bottom: 10px;
   background-color: #fff;
+  //text-align: left;
+  transform: translate(50%, 0%);
 }
-  
+
 h3 {
-  font-size: max(3.2vw, 2rem);
-  margin-bottom: 5px;
+  font-size: max(3vw, 2rem);
+  padding: 5px;
+  margin-bottom: 10px;
   background-color: #fff;
   font-weight: normal;
+  transform: translate(50%, 0%);
+
 }
 
 h2 {
-  display:inline-block;
-  font-size: max(3.2vw, 2rem);
+  display: inline-block;
+  font-size: max(3vw, 2rem);
+  padding: 5px;
   background-color: #fff;
   font-weight: normal;
+  transform: translate(50%, 0%);
 }
 
 //バックナンバー
 .backnumbers {
   background-color: #f8f8f8;
+  transform: translateX(10%);
 }
 
-.backnumbers-history {
-  padding: 1em 1em;
-  font-size: 32px;
+.backnumbers__heading {
+  padding: 2em 1em;
+  font-size: .850rem;
   text-transform: uppercase;
   font-weight: normal;
-  transform: translateX(60%);
+  background-color: #f8f8f8;
 }
 
+.backnumbers__heading::first-line {
+  font-size: 1.5rem;
+}
+
+//バックナンバー一覧
 .bn-list {
   display: flex;
   flex-wrap: wrap;
-  list-style: none;
+  list-style-type: none;
+  margin: 100px;
+  max-width: 100%;
 }
+
+.bn-list-item {
+  flex: 0 0 calc(50% - 20px);
+  margin: 10px;
+}
+
+.bn-list-item-inner {
+  display: flex;
+  // flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.bn-list-item img {
+  width: 300px;
+  height: 380px;
+  object-fit: cover;
+}
+
+.bn-list-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 10px;
+}
+
+.bn-list-content .date,
+.bn-list-content .num,
+.bn-list-content .title {
+  margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
+//.bn-list {
+// list-style-type: none;
+// margin: 0;
+//padding: 0;
+//display: flex;
+//flex-wrap: wrap;
+//justify-content: center;
+
+
+
+// display: flex;
+// flex-wrap: wrap;
+//list-style: none;
+//}
+
+//.bn-list-item101 {
+//flex-basis: 100%;
+// padding: 40px 20px;
+// background-color: #ECF4F9;
+//}
+
+//.bn-list-item101 a {
+// text-decoration: none;
+//color: var(--text-color);
+//}
+
+//.bn-list-item101 img {
+// max-width: 250px;//magazinnサイズ
+//width: 50%;
+// margin: 0 auto;
+//box-shadow:
+//1px 1px 6px 0 rgba(0, 0, 0, .25),
+// 0 0 20px 0 rgba(0, 0, 0, .15);
+//}
+
+//.bn-list-content {
+// margin-top: 4em;
+//}
+
+//.bn-list-content p {
+//display: block;
+//}
+////.bn-list-content .date,
+//.bn-list-content .num {
+//  margin-bottom: 1em;//文字幅
+//  font-weight: 600;//文字太さ
+//}
+
+//.bn-list-content .title {
+//font-size: 1.6em; 
+//letter-spacing: .08em;文字の間隔 
+//}
+
+//.bn-101 {
+//background-color: #ECF4F9;
+//}
