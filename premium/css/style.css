@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 * {
   margin: 0;
   padding: 0;
@@ -20,6 +21,21 @@ img {
     padding-top: 0;
   }
 }
+
+.pc {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .sp {
+    display: none;
+  }
+
+  .pc {
+    display: block;
+  }
+}
+
 :root {
   --font-noto-sans: "Open Sans", "Noto Sans JP", sans-serif;
   --text-color: black;
@@ -38,13 +54,13 @@ img {
   z-index: 1;
 }
 
-.header-logo img {
-  width: 100%;
-}
-
 .header-logo {
   width: 160px;
-  margin: 40px auto 80px;
+  margin: 0 0 0 20px;
+}
+
+.header-logo img {
+  width: 100%;
 }
 
 @media screen and (min-width: 768px) {
@@ -54,16 +70,22 @@ img {
     display: flex;
     flex-direction: column;
   }
+
+  .site-header__logo {
+    width: 160px;
+    margin: 40px auto 80px;
+  }
 }
-@media screen and (min-width: 768px) and (min-width: 768px) {
+
+@media screen and (min-width: 768px) {
   .container {
     margin-left: 200px;
   }
 }
+
 /*ハンバーガーメニュー.ナビゲーション*/
 /*メニュー中身*/
 #gnav-content {
-  overflow: auto;
   display: flex;
   top: 0;
   left: 0;
@@ -79,7 +101,6 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
   flex-grow: 2;
   text-transform: uppercase;
 }
@@ -94,7 +115,7 @@ img {
 }
 
 .gnav-site ul li {
-  margin-bottom: 1.5em;
+  margin-bottom: 10px;
 }
 
 .gnav-site a {
@@ -103,7 +124,7 @@ img {
   color: var(--text-color);
   text-decoration: none;
   padding-bottom: 2px;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .gnav-site a::after {
@@ -123,10 +144,6 @@ img {
   transform: scaleX(1);
 }
 
-.site-nav-check {
-  display: none;
-}
-
 .gnav-hidden {
   display: none;
 }
@@ -134,9 +151,9 @@ img {
 #gnav-open {
   width: 50px;
   height: 50px;
-  top: 20px;
-  right: 16px;
-  display: flex;
+  top: 35px;
+  right: 10px;
+  display: block;
   position: fixed;
   justify-content: center;
   align-items: center;
@@ -144,18 +161,27 @@ img {
   position: fixed;
 }
 
+#gnav-openspan {
+  transform-origin: left center;
+}
+
 #gnav-open span,
 #gnav-open span::before,
 #gnav-open span::after {
-  height: 2px;
-  width: 35px;
+  height: 1.5px;
+  width: 30px;
   transition: 0.5s;
   background-color: var(--text-color);
   cursor: pointer;
+  transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+  position: absolute;
 }
 
 #gnav-open span {
   transform-origin: left center;
+  /* display: block; */
+  /* top: 0; */
+  /* position: relative; */
 }
 
 #gnav-open span::before,
@@ -163,29 +189,53 @@ img {
   content: "";
   position: absolute;
   top: calc(50% - 1px);
+  /* left: 5px; */
 }
 
-#gnav-open ::before {
-  transform: translateY(-10px);
-}
-#gnav-open ::after {
-  transform: translateY(10px);
+#gnav-open span::before {
+  transform: translateY(-8px);
 }
 
-.gnav-hidden:checked ~ .gnav-content {
+#gnav-open span::after {
+  transform: translateY(-16px);
+}
+
+
+/* 768px 以上の場合 */
+@media (min-width: 768px) {
+  #gnav-open {
+    display: none;
+  }
+
+  #gnav-content {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .gnav-site {
+    display: flex;
+    justify-content: center;
+  }
+
+  .gnav-site li {
+    margin: 0;
+  }
+}
+
+.gnav-hidden:checked~#gnav-content {
   transform: translateX(0);
 }
 
-.gnav-hidden:checked ~ #gnav-open span {
+.gnav-hidden:checked~#gnav-open span {
   transform: scaleX(0);
 }
 
-.gnav-hidden:checked ~ #gnav-open::before {
-  transform: translateY(0) rotate(45deg);
+.gnav-hidden:checked~#gnav-open::before {
+  transform: translateY(0) rotate(-45deg);
 }
 
-.gnav-hidden:checked ~ #gnav-open::after {
-  transform: translateY(0) rotate(-45deg);
+.gnav-hidden:checked~#gnav-open::after {
+  transform: translateY(0) rotate(45deg);
 }
 
 .sns {
@@ -214,6 +264,13 @@ img {
   text-align: start;
 }
 
+@media screen and (min-width: 768px) {
+  .gnav-content {
+    transform: none !important;
+    position: static;
+  }
+}
+
 .mv-aria {
   display: flex;
   justify-content: center;
@@ -237,6 +294,7 @@ img {
     height: 100vh;
   }
 }
+
 .mv-text {
   position: absolute;
   margin: 20px;
@@ -273,58 +331,104 @@ h2 {
 
 .backnumbers {
   background-color: #f8f8f8;
-  transform: translateX(10%);
 }
 
-.backnumbers__heading {
+.backnumbers-heading {
   padding: 2em 1em;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   font-weight: normal;
   background-color: #f8f8f8;
+  padding-left: 0;
+  display: inline-block;
 }
 
-.backnumbers__heading::first-line {
+.backnumbers-heading::first-line {
   font-size: 1.5rem;
 }
 
+/* コンテナのスタイル */
 .bn-list {
   display: flex;
   flex-wrap: wrap;
-  list-style-type: none;
-  margin: 100px;
-  max-width: 100%;
+  list-style: none;
 }
 
+/* アイテムのスタイル */
 .bn-list-item {
-  flex: 0 0 calc(50% - 20px);
-  margin: 10px;
+  flex-basis: 50%;
 }
 
-.bn-list-item-inner {
-  display: flex;
-  align-items: center;
+.bn-list-item a {
   text-decoration: none;
-  color: inherit;
+  color: var(--text-color);
 }
 
 .bn-list-item img {
-  width: 300px;
-  height: 380px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  max-width: 300px;
+  width: 25%;
+  margin: 0 auto;
+  box-shadow: 2px 2px 2px 1px #888888;
 }
 
 .bn-list-content {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-top: 10px;
+  margin-top: 4em;
+}
+
+.bn-list-content p {
+  display: block;
 }
 
 .bn-list-content .date,
-.bn-list-content .num,
+.bn-list-content .num {
+  margin-bottom: 0.5em;
+  font-size: 16px;
+}
+
 .bn-list-content .title {
-  margin: 0;
-}/*# sourceMappingURL=style.css.map */
+  font-size: 18px;
+  font-weight: 400;
+}
+
+@media screen and (min-width: 768px) {
+  .bn-list-item {
+    padding: 40px 20px;
+  }
+}
+
+.bn-list-item101 {
+  background-color: #ecf4f9;
+}
+
+.bn-list-item100 {
+  background-color: #fbf3d2;
+}
+
+.bn-list-item99 {
+  background-color: #f9f2eb;
+}
+
+.bn-list-item98 {
+  background-color: #fae8c2;
+}
+
+.bn-list-item97 {
+  background-color: #e2efe7;
+}
+
+.bn-list-item96 {
+  background-color: #f2f2f2;
+}
+
+.bn-list-content .date,
+.bn-list-content .num {
+  margin-bottom: 0.1px;
+  font-size: 12px;
+}
+
+.bn-list-content .title {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/*# sourceMappingURL=style.css.map */

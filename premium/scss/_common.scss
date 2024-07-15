@@ -22,4 +22,17 @@ img {
 }
 }
 
+.pc {
+  display: none;
+}
+
+@include mq {
+  .sp {
+    display: none;
+  }
+
+  .pc {
+    display: block;
+  }
+}
 
