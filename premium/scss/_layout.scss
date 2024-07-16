@@ -16,7 +16,7 @@
 
 .header-logo {
   width: 160px;
-  margin: 0 0 0 20px;
+    margin: 40px auto 80px;
 }
 
 .header-logo img {
@@ -29,11 +29,6 @@
     width: 200px;
     display: flex;
     flex-direction: column;
-  }
-
-  .site-header__logo {
-    width: 160px;
-    margin: 40px auto 80px;
   }
 }
 
@@ -50,14 +45,13 @@
   display: flex;
   top: 0;
   left: 0;
-  //position: absolute;
-
+  position: absolute;//隠されてるロゴ出てくる。
   justify-content: center;
   flex-direction: column;
   width: 100%;
   height: 100vh; 
   background-color: #fff;
- transition: 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
   //transition: max-height 0.3s ease-out;
 }
 
@@ -79,7 +73,7 @@
 }
 
 .gnav-site ul li {
-  margin-bottom: 10px; //メニュー余白
+  margin-bottom: 1.5em; //メニュー間余白10ｐｘでも
 }
 
 .gnav-site a {
@@ -94,7 +88,8 @@
 .gnav-site a::after {
   content: "";
   position: absolute;
-  width: 100;
+  height: 1px;
+  width: 100%;
   left: 0;
   bottom: 0;
   background-color: var(--text-color);
@@ -123,7 +118,8 @@
   justify-content: center;
   align-items: center;
   z-index: 10; //一番最前面に配置
-  position: fixed;
+  //position: fixed;//画面上の決まった場所に固定
+  
   //background:  url("../icon-nav-open.svg") center center no-repeat;
 }
 
@@ -131,19 +127,21 @@
   span,
   span::before,
   span::after {
+    //content: '';
     height: 1.5px;
     width: 30px; //３本線長さ
-    transition: max-height 0.3s ease-out;
+    transition: 0.5s;
     background-color: var(--text-color);
-    cursor: pointer; //表示非表示
+    display: block;
+    //position: absolute;
   }
 }
 
 #gnav-open span {
   transform-origin: left center;
-  display: block;
-top: 0;
-  position:relative;
+  //display: block;
+//top: 0;
+  //position:relative;
   //left: 0;
   //transition: all 0.3s ease-in-out;
 }
@@ -168,27 +166,7 @@ top: 0;
   }
 }
 
-/* 768px 未満の場合 */
-@media (max-width: 767px) {
-  #gnav-open .gnav-icon-open {
-    display: block;
-  }
-  #gnav-open .gnav-icon-close {
-    display: none;
-  }
 
-  .gnav-hidden:checked ~ #gnav-content {
-    max-height: 1000px;
-    transition: max-height 0.5s ease-in;
-  }
-
-  .gnav-hidden:checked ~ #gnav-open .gnav-icon-open {
-    display: none;
-  }
-  .gnav-hidden:checked ~ #gnav-open .gnav-icon-close {
-    display: block;
-  }
-}
 
 /* 768px 以上の場合 */
 @media (min-width: 768px) {
@@ -211,25 +189,19 @@ top: 0;
   }
 }
 
-
-.gnav-hidden:checked~#gnav-content {
-  transform: translateX(0);
+#gnav-input:checked ~ #gnav-open span::before {
+  bottom: 0;
+  transform: rotate(45deg);
 }
 
-.gnav-hidden:checked~#gnav-open span {
-  transform: scaleX(0);
+#gnav-input:checked ~ #gnav-open span::after {
+  bottom: 0;
+  transform: rotate(-45deg);
 }
+  #gnav-input:checked ~ #gnav-open span {
+  background: rgba(255, 255, 255, 0);
+}/* アイコンがクリックされたら真ん中の線を透明にする */
 
-.gnav-hidden:checked~#gnav-open::before {
-  transform: translateY(0) rotate(45deg);
-}
-
-.gnav-hidden:checked~#gnav-open::after {
- transform: translateY(0) rotate(-45deg);
-}
-//#gnav-input:checked~#gnav-open {
-  //background: url("../icon-nav-close.svg") center //center //no-repeat;
-//}
 
 //SNS
 .sns {
@@ -240,7 +212,7 @@ top: 0;
 }
 
 .sns a {
-  display: inline-block;
+  //display: inline-block;
   margin: 0 8px;
 }
 
@@ -264,7 +236,7 @@ top: 0;
     position: static;
   }
   }
-
+  
 
 //メインエリア
 .mv-aria {
@@ -367,9 +339,6 @@ h2 {
 /* アイテムのスタイル */
 .bn-list-item {
   flex-basis: calc(50%);
-  //margin: 20px;
-  //overflow: hidden;
-  //padding: 40px 20px;
 }
 
 .bn-list-item a{
@@ -381,19 +350,9 @@ color: var(--text-color);
   max-width: 300px;
   width: 25%;
   margin: 0 auto;
-  //object-fit: cover;
-  //flex-shrink: 0;
+  flex-shrink: 0;
   box-shadow: 2px 2px 2px 1px #888888;
 }
-//.item-image {
- // width: 300px;
- // height: 300px;
- // margin-right: 20px;
-//}
-
-//.bn-list-item-inner {
-  //align-items: center;
-//}
 
 .bn-list-content {
     margin-top: 4em;
@@ -406,14 +365,14 @@ color: var(--text-color);
 .bn-list-content .date,
 .bn-list-content .num  {
   margin-bottom: .5em;
-  //font-weight: 320;
+  
   font-size: 16px;
 }
 
 .bn-list-content .title {
   font-size: 18px;
  font-weight: 400;
- // margin-top: 10px;
+ 
 }
 
 @include mq {
@@ -457,7 +416,3 @@ color: var(--text-color);
  font-weight: 400;
 }
 
-
- 
-  
-  

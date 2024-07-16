@@ -1,5 +1,4 @@
 @charset "UTF-8";
-
 * {
   margin: 0;
   padding: 0;
@@ -7,7 +6,7 @@
 }
 
 body {
-  font-size: 16px;
+  font-family: var(--text-color);
   padding-top: 60px;
 }
 
@@ -21,7 +20,6 @@ img {
     padding-top: 0;
   }
 }
-
 .pc {
   display: none;
 }
@@ -30,12 +28,10 @@ img {
   .sp {
     display: none;
   }
-
   .pc {
     display: block;
   }
 }
-
 :root {
   --font-noto-sans: "Open Sans", "Noto Sans JP", sans-serif;
   --text-color: black;
@@ -56,7 +52,7 @@ img {
 
 .header-logo {
   width: 160px;
-  margin: 0 0 0 20px;
+  margin: 40px auto 80px;
 }
 
 .header-logo img {
@@ -70,25 +66,19 @@ img {
     display: flex;
     flex-direction: column;
   }
-
-  .site-header__logo {
-    width: 160px;
-    margin: 40px auto 80px;
-  }
 }
-
 @media screen and (min-width: 768px) {
   .container {
     margin-left: 200px;
   }
 }
-
 /*ハンバーガーメニュー.ナビゲーション*/
 /*メニュー中身*/
 #gnav-content {
   display: flex;
   top: 0;
   left: 0;
+  position: absolute;
   justify-content: center;
   flex-direction: column;
   width: 100%;
@@ -115,7 +105,7 @@ img {
 }
 
 .gnav-site ul li {
-  margin-bottom: 10px;
+  margin-bottom: 1.5em;
 }
 
 .gnav-site a {
@@ -130,7 +120,8 @@ img {
 .gnav-site a::after {
   content: "";
   position: absolute;
-  width: 100;
+  height: 1px;
+  width: 100%;
   left: 0;
   bottom: 0;
   background-color: var(--text-color);
@@ -151,18 +142,13 @@ img {
 #gnav-open {
   width: 50px;
   height: 50px;
-  top: 35px;
-  right: 10px;
-  display: block;
+  top: 10px;
+  right: 12px;
+  display: flex;
   position: fixed;
   justify-content: center;
   align-items: center;
   z-index: 10;
-  position: fixed;
-}
-
-#gnav-openspan {
-  transform-origin: left center;
 }
 
 #gnav-open span,
@@ -172,16 +158,11 @@ img {
   width: 30px;
   transition: 0.5s;
   background-color: var(--text-color);
-  cursor: pointer;
-  transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
-  position: absolute;
+  display: block;
 }
 
 #gnav-open span {
   transform-origin: left center;
-  /* display: block; */
-  /* top: 0; */
-  /* position: relative; */
 }
 
 #gnav-open span::before,
@@ -189,55 +170,45 @@ img {
   content: "";
   position: absolute;
   top: calc(50% - 1px);
-  /* left: 5px; */
 }
 
-#gnav-open span::before {
-  transform: translateY(-8px);
+#gnav-open ::before {
+  transform: translateY(-10px);
 }
-
-#gnav-open span::after {
-  transform: translateY(-16px);
+#gnav-open ::after {
+  transform: translateY(10px);
 }
-
 
 /* 768px 以上の場合 */
 @media (min-width: 768px) {
   #gnav-open {
     display: none;
   }
-
   #gnav-content {
     max-height: none;
     overflow: visible;
   }
-
   .gnav-site {
     display: flex;
     justify-content: center;
   }
-
   .gnav-site li {
     margin: 0;
   }
 }
-
-.gnav-hidden:checked~#gnav-content {
-  transform: translateX(0);
+#gnav-input:checked ~ #gnav-open span::before {
+  bottom: 0;
+  transform: rotate(45deg);
 }
 
-.gnav-hidden:checked~#gnav-open span {
-  transform: scaleX(0);
+#gnav-input:checked ~ #gnav-open span::after {
+  bottom: 0;
+  transform: rotate(-45deg);
 }
 
-.gnav-hidden:checked~#gnav-open::before {
-  transform: translateY(0) rotate(-45deg);
-}
-
-.gnav-hidden:checked~#gnav-open::after {
-  transform: translateY(0) rotate(45deg);
-}
-
+#gnav-input:checked ~ #gnav-open span {
+  background: rgba(255, 255, 255, 0);
+} /* アイコンがクリックされたら真ん中の線を透明にする */
 .sns {
   display: flex;
   justify-content: center;
@@ -246,7 +217,6 @@ img {
 }
 
 .sns a {
-  display: inline-block;
   margin: 0 8px;
 }
 
@@ -270,7 +240,6 @@ img {
     position: static;
   }
 }
-
 .mv-aria {
   display: flex;
   justify-content: center;
@@ -294,7 +263,6 @@ img {
     height: 100vh;
   }
 }
-
 .mv-text {
   position: absolute;
   margin: 20px;
@@ -368,6 +336,7 @@ h2 {
   max-width: 300px;
   width: 25%;
   margin: 0 auto;
+  flex-shrink: 0;
   box-shadow: 2px 2px 2px 1px #888888;
 }
 
@@ -395,7 +364,6 @@ h2 {
     padding: 40px 20px;
   }
 }
-
 .bn-list-item101 {
   background-color: #ecf4f9;
 }
@@ -429,6 +397,4 @@ h2 {
 .bn-list-content .title {
   font-size: 14px;
   font-weight: 400;
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */
