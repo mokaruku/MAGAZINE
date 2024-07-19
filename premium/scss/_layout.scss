@@ -9,14 +9,13 @@
   background: #fff;
   position: fixed;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: flex-start;
   z-index: 1; //重なりなくす
 }
-
 .header-logo {
   width: 160px;
-    margin: 40px auto 80px;
+  margin: 40px auto 60px;
 }
 
 .header-logo img {
@@ -32,12 +31,11 @@
   }
 }
 
-  @include mq {
-    .container {
-      margin-left: 200px;
-    }
+@include mq {
+  .container {
+    margin-left: 200px;
   }
-
+}
 
 /*ハンバーガーメニュー.ナビゲーション*/
 /*メニュー中身*/
@@ -45,14 +43,12 @@
   display: flex;
   top: 0;
   left: 0;
-  position: absolute;//隠されてるロゴ出てくる。
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  height: 100vh; 
+  height: 100vh;
   background-color: #fff;
   transition: 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
-  //transition: max-height 0.3s ease-out;
 }
 
 .gnav-site {
@@ -60,7 +56,6 @@
   align-items: center;
   justify-content: center;
   flex-grow: 2;
-  text-transform: uppercase; //大文字化
 }
 
 .gnav-site ul {
@@ -83,10 +78,11 @@
   text-decoration: none;
   padding-bottom: 2px;
   font-size: .8rem; //menu font size
+  text-transform: uppercase; //大文字化
 }
 
 .gnav-site a::after {
-  content: "";
+  content: '';
   position: absolute;
   height: 1px;
   width: 100%;
@@ -104,7 +100,7 @@
 }
 
 .gnav-hidden {
-  display: none;//チェックボックス非表示
+  display: none; //チェックボックス非表示
 }
 
 //ボタン
@@ -117,19 +113,17 @@
   position: fixed;
   justify-content: center;
   align-items: center;
-  z-index: 10; //一番最前面に配置
-  //position: fixed;//画面上の決まった場所に固定
-  
-  //background:  url("../icon-nav-open.svg") center center no-repeat;
+  z-index: 10; 
 }
 
 #gnav-open {
+
   span,
   span::before,
   span::after {
     //content: '';
     height: 1.5px;
-    width: 30px; //３本線長さ
+    width: 30px; 
     transition: 0.5s;
     background-color: var(--text-color);
     display: block;
@@ -139,15 +133,9 @@
 
 #gnav-open span {
   transform-origin: left center;
-  //display: block;
-//top: 0;
-  //position:relative;
-  //left: 0;
-  //transition: all 0.3s ease-in-out;
 }
 
 #gnav-open {
-
   span::before,
   span::after {
     content: '';
@@ -166,42 +154,33 @@
   }
 }
 
-
-
-/* 768px 以上の場合 */
-@media (min-width: 768px) {
-  #gnav-open {
-    display: none;
-  }
-
-  #gnav-content {
-    max-height: none;
-    overflow: visible;
-  }
-
-  .gnav-site {
-    display: flex;
-    justify-content: center;
-  }
-
-  .gnav-site li {
-    margin: 0;
-  }
+#gnav-content {
+  max-height: none;
+  overflow: visible;
 }
 
-#gnav-input:checked ~ #gnav-open span::before {
+.gnav-site {
+  display: flex;
+  justify-content: center;
+}
+
+.gnav-site li {
+  margin: 0;
+}
+
+#gnav-input:checked~#gnav-open span::before {
   bottom: 0;
   transform: rotate(45deg);
 }
 
-#gnav-input:checked ~ #gnav-open span::after {
+#gnav-input:checked~#gnav-open span::after {
   bottom: 0;
   transform: rotate(-45deg);
 }
-  #gnav-input:checked ~ #gnav-open span {
-  background: rgba(255, 255, 255, 0);
-}/* アイコンがクリックされたら真ん中の線を透明にする */
 
+#gnav-input:checked~#gnav-open span {
+  background: rgba(255, 255, 255, 0);
+}
 
 //SNS
 .sns {
@@ -212,14 +191,15 @@
 }
 
 .sns a {
-  //display: inline-block;
   margin: 0 8px;
+  margin-bottom: 40px;
 }
 
 .gnav-site {
   position: static;
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
+
   background-color: transparent; //要素背景透明
   flex-grow: 1;
   align-items: start;
@@ -230,55 +210,46 @@
   text-align: start;
 }
 
-@include mq {
-  .gnav-content {
-    transform: none !important;
-    position: static;
+/* 768px 以上の場合 */
+@media (min-width: 768px) {
+  #gnav-open {
+    display: none;
   }
-  }
-  
-
+}
 //メインエリア
 .mv-aria {
   display: flex;
   justify-content: center;
   align-items: center;
-  //flex-direction: row;
   position: relative;
-  height: calc(100vh - 60px); //100vhは８００px
+  height: calc(100vh - 60px); 
   background: url(../img/mv-bg@2x.jpg) no-repeat center center;
   background-size: cover;
-  //animation: mv 1s .5s both;
+  
 }
 
 .mv-img {
-  //transform: translateY(-10%); 
+  
   width: min(75vw, 250px);
   height: 80vh;
-  max-height: 500px; //本の大きさh
+  max-height: 500px; 
   width: auto;
-  transform: translateY(0); //文字重なる
+  transform: translateY(0); 
 }
 
 @include mq {
   .mv-aria {
-    height: 100vh; //本の高さ
+    height: 100vh; 
   }
 }
 
 .mv-text {
   position: absolute;
-  // top: 120%; //文字高さ
-  // left: 35%;
-  // font-size: 1rem;
   margin: 20px;
-  //padding: 10px;
-  // overflow: hidden;
   transform: translate(-40%, -150%); //文字位置
   text-align: center;
   line-height: 1;
 }
-
 
 h4 {
   font-size: 1.2rem;
@@ -318,7 +289,8 @@ h2 {
   font-size: .750rem;
   text-transform: uppercase;
   font-weight: normal;
-  background-color: #f8f8f8;padding-left: 0;
+  background-color: #f8f8f8;
+  padding-left: 0;
   display: inline-block;
 }
 
@@ -326,24 +298,31 @@ h2 {
   font-size: 1.5rem;
 }
 
-//バックナンバー一覧
+@keyframes mv {
+  0% {
+    opacity: 0;
+  }
 
- /* コンテナのスタイル */
- .bn-list {
+  100% {
+    opacity: 1;
+  }
+}
+
+//バックナンバー一覧
+/* コンテナのスタイル */
+.bn-list {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
- 
- }
+}
 
-/* アイテムのスタイル */
 .bn-list-item {
   flex-basis: calc(50%);
 }
 
-.bn-list-item a{
-text-decoration: none;
-color: var(--text-color);
+.bn-list-item a {
+  text-decoration: none;
+  color: var(--text-color);
 }
 
 .bn-list-item img {
@@ -355,7 +334,7 @@ color: var(--text-color);
 }
 
 .bn-list-content {
-    margin-top: 4em;
+  margin-top: 4em;
 }
 
 .bn-list-content p {
@@ -363,23 +342,22 @@ color: var(--text-color);
 }
 
 .bn-list-content .date,
-.bn-list-content .num  {
+.bn-list-content .num {
   margin-bottom: .5em;
-  
   font-size: 16px;
 }
 
 .bn-list-content .title {
   font-size: 18px;
- font-weight: 400;
- 
+  font-weight: 400;
 }
 
 @include mq {
   .bn-list-item {
-   padding: 40px 20px;
+    padding: 40px 20px;
   }
 }
+
 // 背景色の設定 
 .bn-list-item101 {
   background-color: #ecf4f9;
@@ -406,13 +384,21 @@ color: var(--text-color);
 }
 
 .bn-list-content .date,
-.bn-list-content .num  {
+.bn-list-content .num {
   margin-bottom: .10px;
   font-size: 12px;
 }
 
 .bn-list-content .title {
   font-size: 14px;
- font-weight: 400;
+  font-weight: 400;
 }
+
+@include mq {
+  .bn-list {
+   flex-basis: 100;
+  }
+}
+
+
 

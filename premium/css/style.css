@@ -20,18 +20,6 @@ img {
     padding-top: 0;
   }
 }
-.pc {
-  display: none;
-}
-
-@media screen and (min-width: 768px) {
-  .sp {
-    display: none;
-  }
-  .pc {
-    display: block;
-  }
-}
 :root {
   --font-noto-sans: "Open Sans", "Noto Sans JP", sans-serif;
   --text-color: black;
@@ -45,14 +33,14 @@ img {
   background: #fff;
   position: fixed;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: flex-start;
   z-index: 1;
 }
 
 .header-logo {
   width: 160px;
-  margin: 40px auto 80px;
+  margin: 40px auto 60px;
 }
 
 .header-logo img {
@@ -78,7 +66,6 @@ img {
   display: flex;
   top: 0;
   left: 0;
-  position: absolute;
   justify-content: center;
   flex-direction: column;
   width: 100%;
@@ -92,7 +79,6 @@ img {
   align-items: center;
   justify-content: center;
   flex-grow: 2;
-  text-transform: uppercase;
 }
 
 .gnav-site ul {
@@ -115,6 +101,7 @@ img {
   text-decoration: none;
   padding-bottom: 2px;
   font-size: 0.8rem;
+  text-transform: uppercase;
 }
 
 .gnav-site a::after {
@@ -179,23 +166,20 @@ img {
   transform: translateY(10px);
 }
 
-/* 768px 以上の場合 */
-@media (min-width: 768px) {
-  #gnav-open {
-    display: none;
-  }
-  #gnav-content {
-    max-height: none;
-    overflow: visible;
-  }
-  .gnav-site {
-    display: flex;
-    justify-content: center;
-  }
-  .gnav-site li {
-    margin: 0;
-  }
+#gnav-content {
+  max-height: none;
+  overflow: visible;
 }
+
+.gnav-site {
+  display: flex;
+  justify-content: center;
+}
+
+.gnav-site li {
+  margin: 0;
+}
+
 #gnav-input:checked ~ #gnav-open span::before {
   bottom: 0;
   transform: rotate(45deg);
@@ -208,7 +192,8 @@ img {
 
 #gnav-input:checked ~ #gnav-open span {
   background: rgba(255, 255, 255, 0);
-} /* アイコンがクリックされたら真ん中の線を透明にする */
+}
+
 .sns {
   display: flex;
   justify-content: center;
@@ -218,11 +203,12 @@ img {
 
 .sns a {
   margin: 0 8px;
+  margin-bottom: 40px;
 }
 
 .gnav-site {
   position: static;
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
   background-color: transparent;
   flex-grow: 1;
@@ -234,10 +220,10 @@ img {
   text-align: start;
 }
 
-@media screen and (min-width: 768px) {
-  .gnav-content {
-    transform: none !important;
-    position: static;
+/* 768px 以上の場合 */
+@media (min-width: 768px) {
+  #gnav-open {
+    display: none;
   }
 }
 .mv-aria {
@@ -315,6 +301,14 @@ h2 {
   font-size: 1.5rem;
 }
 
+@keyframes mv {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 /* コンテナのスタイル */
 .bn-list {
   display: flex;
@@ -322,7 +316,6 @@ h2 {
   list-style: none;
 }
 
-/* アイテムのスタイル */
 .bn-list-item {
   flex-basis: 50%;
 }
@@ -397,4 +390,10 @@ h2 {
 .bn-list-content .title {
   font-size: 14px;
   font-weight: 400;
+}
+
+@media screen and (min-width: 768px) {
+  .bn-list {
+    flex-basis: 100;
+  }
 }/*# sourceMappingURL=style.css.map */
